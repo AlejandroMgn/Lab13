@@ -239,6 +239,7 @@
     <Content Include="Views\Persona\Index.cshtml" />
     <Content Include="Views\Persona\Listar.cshtml" />
     <Content Include="Views\Persona\Mostrar.cshtml" />
+    <Content Include="Views\Persona\Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

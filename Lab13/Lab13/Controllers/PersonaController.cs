@@ -15,7 +15,7 @@ namespace Lab13.Controllers
             return View();
         }
 
-        public ActionResult Listar()
+        public ActionResult Listar(string name)
         {
             List<Persona> personas = new List<Persona>();
             personas.Add(new Persona
@@ -83,6 +83,48 @@ namespace Lab13.Controllers
                                where p.PersonaID == id
                                select p).FirstOrDefault();
             return View(persona);
+        }
+
+        // POST: /Categories/Create
+        //registrar nueva categoria en la BD
+        public ActionResult Buscar(string personaN)
+        {
+            List<Persona> personas = new List<Persona>();
+            personas.Add(new Persona
+            {
+                PersonaID = 1,
+                Nombre = "Juan",
+                Apellido = "Perez",
+                Direccion = "AV. Evergreen 322",
+                FechaNac = Convert.ToDateTime("1997-11-07"),
+                Email = "juan@gmail.com"
+            });
+            personas.Add(new Persona
+            {
+                PersonaID = 2,
+                Nombre = "Maria",
+                Apellido = "Salas",
+                Direccion = "AV. Progreso 322",
+                FechaNac = Convert.ToDateTime("1995-11-07"),
+                Email = "salasn@gmail.com"
+            });
+            personas.Add(new Persona
+            {
+                PersonaID = 3,
+                Nombre = "Carlos",
+                Apellido = "Martinez",
+                Direccion = "AV. Manzanos 322",
+                FechaNac = Convert.ToDateTime("1992-11-07"),
+                Email = "cmartinez@gmail.com"
+            });
+            if (!string.IsNullOrEmpty(personaN))
+            {
+                personas = (from p in personas
+                            where p.Nombre.ToLower().Contains(personaN)
+                            select p).ToList();
+            }
+       
+            return View(personas);
         }
 
     }
